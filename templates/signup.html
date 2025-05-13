@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice AI Assistant Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
+    <style>
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .slide-down {
+            animation: slideDown 0.5s ease-out forwards;
+        }
+
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 min-h-screen flex items-center justify-center">
+    <audio id="welcomeSound" src="https://cdn.pixabay.com/audio/2023/08/31/audio_6e5e6e5f5e.mp3"></audio>
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md slide-down" id="signupForm">
+        <div class="flex items-center mb-6">
+            <div class="w-8 h-8 bg-blue-600 rounded-full mr-2 flex items-center justify-center">
+                <span class="text-white font-bold">F</span>
+            </div>
+            <h1 class="text-xl font-bold text-white">Flowbite</h1>
+        </div>
+        <h2 class="text-2xl font-bold text-white mb-4">Create a new account</h2>
+        <form id="signupForm" class="space-y-4">
+            <div>
+                <label class="block text-gray-300 mb-2" for="email">Email</label>
+                <input type="email" id="email"
+                    class="w-full p-3 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter your email" required>
+            </div>
+            <div>
+                <label class="block text-gray-300 mb-2" for="password">Password</label>
+                <input type="password" id="password"
+                    class="w-full p-3 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="********" required>
+            </div>
+            <div>
+                <label class="block text-gray-300 mb-2" for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword"
+                    class="w-full p-3 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="********" required>
+            </div>
+            <button type="submit" id="signupButton"
+                class="w-full p-3 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                Sign up
+            </button>
+            <p class="text-gray-400 text-center">
+                Already have an account? <a href="/templates/signin.html" id="signinLink"
+                    class="text-blue-500 hover:underline">Sign in</a>
+            </p>
+            <p id="error" class="text-red-500 text-center hidden"></p>
+            <div id="success" class="text-green-500 text-center hidden">
+                Welcome to our website! Account created successfully. <a href="/signin.html"
+                    class="text-blue-500 hover:underline">Sign in</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('signupForm').classList.add('slide-down');
+        });
+
+        document.getElementById('signupButton').addEventListener('click', async function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const error = document.getElementById('error');
+            const success = document.getElementById('success');
+
+            // Validate email and password
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !password || !confirmPassword) {
+                error.textContent = 'Please fill in all fields.';
+                error.classList.remove('hidden');
+                return;
+            }
+            if (!emailRegex.test(email)) {
+                error.textContent = 'Please enter a valid email address.';
+                error.classList.remove('hidden');
+                return;
+            }
+            if (password !== confirmPassword) {
+                error.textContent = 'Passwords do not match.';
+                error.classList.remove('hidden');
+                return;
+            }
+            if (password.length < 6) {
+                error.textContent = 'Password must be at least 6 characters.';
+                error.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                const response = await axios.post('http://localhost:8000/signup', {
+                    email,
+                    password
+                }, {
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                localStorage.setItem('token', response.data.access_token);
+                error.classList.add('hidden');
+                success.classList.remove('hidden');
+                document.getElementById('signupForm').classList.add('pulse');
+                playWelcomeSound();
+                setTimeout(() => {
+                    window.location.href = '/signin.html'; // Redirect to sign-in after success
+                }, 2000);
+            } catch (err) {
+                error.textContent = 'Signup failed: ' + (err.response?.data?.detail || 'Unknown error');
+                error.classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('signinLink').addEventListener('click', function (e) {
+            // Already handled by href
+        });
+
+        function playWelcomeSound() {
+            const sound = document.getElementById('welcomeSound');
+            sound.play().catch(error => console.log('Audio play failed:', error));
+        }
+    </script>
+</body>
+
+</html>
