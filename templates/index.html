@@ -25,7 +25,7 @@
                     <li><a href="/templates/docs.html">Docs</a></li>
                 </ul>
                 <div class="nav-buttons">
-                    <a href="/templates/signin.html" class="btn">Login Page</a>
+                    <a href="/templates/signin.html" class="btn-log">Login Page</a>
                     <button class="menu-toggle" aria-label="Open menu">
                         <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path stroke="currentColor" stroke-width="1.5" d="M2 6h20M2 12h20M2 18h20"></path>
@@ -36,7 +36,7 @@
         </nav>
     </header>
     <section class="hero">
-        <h1>Create the most realistic speech with our AI audio platform</h1>
+        <h1 class="hero-title">Create the most realistic speech with our AI audio platform</h1>
         <p>Pioneering research in Text to Speech, AI Voice Generator, and more</p>
         <a href="/templates/playground.html" class="cta-button" id="explore-features">EXPLORE FEATURES</a>
     </section>
@@ -49,8 +49,9 @@
             <button class="nav-btn-voice" data-section="voice-changer">Voice Changer</button>
             <button class="nav-btn-voice" data-section="text-to-sfx">Text to SFX</button>
             <button class="nav-btn-voice" data-section="voice-cloning">Voice Cloning</button>
-            <button class="nav-btn-voice" data-section="create-clone" id="create-clone-btn"><a
-                    href="/templates/playground.html">Create New Clone</a></button>
+            <button class="nav-btn-voice" data-section="create-clone" id="create-clone-btn">
+                <a href="/templates/playground.html" style="text-decoration: none; color: inherit;">Create New Clone</a>
+            </button>
         </div>
 
         <div class="sections">
@@ -128,10 +129,10 @@
             </div>
 
             <div class="section text-to-sfx-section" data-section="text-to-sfx">
-                <h2>Text to SFX</h2>
-                <textarea id="sfx-input" placeholder="Enter text for SFX..."></textarea>
-                <button id="sfx-submit">Generate SFX</button>
-                <audio id="sfx-audio" controls class="mt-2 hidden"></audio>
+                <h2>Text-to-SFX</h2>
+                <input id="sfx-input" type="text" placeholder="Enter sound description">
+                <button id="sfx-submit" type="button">Generate SFX</button>
+                <audio id="sfx-audio" class="hidden" controls></audio>
             </div>
 
 

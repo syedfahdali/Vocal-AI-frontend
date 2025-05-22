@@ -1,8 +1,22 @@
 /* ==========================================================================
    Base Styles
    ========================================================================== */
+   :root {
+    --dark: #0a0a0a;
+    --darker: #050505;
+    --gold: #f5c518;
+    --gold-hover: #ffe580;
+    --gray-800: #1f2937;
+    --gray-700: #374151;
+    --gray-600: #4b5563;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
    body {
-    font-family: 'Roboto', Arial, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #0a0a0a;
@@ -47,6 +61,7 @@
     display: flex;
     gap: 30px;
     margin: 0;
+    color: white;
 }
 
 .nav-links li {
@@ -82,6 +97,19 @@
     height: 28px;
 }
 
+.btn-log {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-log:hover {
+    color: #ffcc00;
+    background-color: rgba(255, 204, 0, 0.1);}
+
 /* ==========================================================================
    Hero Section Styles
    ========================================================================== */
@@ -96,17 +124,24 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
+.hero h1{
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+    background: linear-gradient(90deg, #fff, var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.hero h1 {
-    font-size: 3.5rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    color: white;
-}
+
 
 .hero p {
     font-size: 1.3rem;
@@ -143,10 +178,10 @@
     display: flex;
     align-items: center;
     gap: 40px;
-    background: linear-gradient(90deg, #2a5ada, #8ab6f9);
+    background: linear-gradient(90deg, #fff, var(--gold));
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    color: #ffffff;
+    color: #000000;
 }
 
 .ai-agents-text {
@@ -158,13 +193,13 @@
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 15px;
-    color: #ffffff;
+    color: #000000;
 }
 
 .ai-agents-text p {
     font-size: 1.2rem;
     margin-bottom: 30px;
-    color: #e0e0e0;
+    color: #000000;
     line-height: 1.7;
 }
 
@@ -517,10 +552,10 @@ audio {
     padding: 12px 25px;
     border: none;
     border-radius: 25px;
-    background: #2c2c2c;
+    background: #ffcc00;
     cursor: pointer;
     font-size: 1rem;
-    color: #ffffff;
+    color: #000000;
     transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -531,8 +566,21 @@ audio {
 }
 
 .nav-btn-voice:hover {
-    background: #3a3a3a;
-    transform: scale(1.02);
+    background: #ffcc00;
+    transform: scale(1.05);
+    color: #000000;
+    text-decoration: none;
+}
+#create-clone-btn a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#create-clone-btn a:hover,
+#create-clone-btn a:visited,
+#create-clone-btn a:active {
+    text-decoration: none;
+    color: black;
 }
 
 .sections {
@@ -819,6 +867,75 @@ button.loading::after {
     color: #f44336;
 }
 
+.pulse {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -60%) scale(1.1); }
+    50% { transform: translate(-50%, -60%) scale(1.15); }
+    100% { transform: translate(-50%, -60%) scale(1.1); }
+}
+
+/* Section transition animation */
+.animate-section {
+    animation: sectionFade 1s ease;
+}
+
+@keyframes sectionFade {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Button click animation */
+.button-click {
+    animation: buttonClick 0.3s ease;
+}
+
+@keyframes buttonClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Audio playback animation */
+.audio-playing {
+    position: relative;
+    overflow: hidden;
+}
+
+.audio-playing::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.2), transparent);
+    animation: wave 2s infinite;
+}
+
+@keyframes wave {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Enhance existing button styles */
+button, .btn, .voice-btn, .nav-btn-voice {
+    transition: all 0.3s ease;
+}
+
+/* Enhance recording button */
+.recording {
+    background: #ff4444 !important;
+    color: #ffffff !important;
+}
+
+/* Menu toggle active state */
+.menu-toggle.active svg {
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+}
 /* ==========================================================================
    Media Queries
    ========================================================================== */
