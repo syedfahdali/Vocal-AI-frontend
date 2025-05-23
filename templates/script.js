@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const parsedState = JSON.parse(savedState);
             // Only load state for properties we want to persist
             appState.tts = parsedState.tts || { text: '', gender: 'male', audioUrl: '', status: '' };
-            appState.sfx = parsedState.sfx || { query: '', taskId: '', audioUrl: '', status: '' };
+            appState.sfx = parsedState.sfx || false;
             appState.activeSection = parsedState.activeSection || 'text-to-speech';
             appState.menuOpen = parsedState.menuOpen || false;
             appState.exploreAnimated = parsedState.exploreAnimated || false;
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveState = () => {
         const stateToSave = {
             tts: appState.tts,
-            sfx: appState.sfx,
+            // sfx: appState.sfx,
             activeSection: appState.activeSection,
             menuOpen: appState.menuOpen,
             exploreAnimated: appState.exploreAnimated
@@ -109,18 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
             updateStatus('tts-status', appState.tts.status, appState.tts.status.includes('Error') ? 'error' : 'success');
         }
 
-        if (appState.sfx.query) {
-            document.getElementById('sfx-input').value = appState.sfx.query;
-            if (appState.sfx.audioUrl) {
-                const audio = document.getElementById('sfx-audio');
-                audio.src = appState.sfx.audioUrl;
-                audio.classList.remove('hidden');
-                updateStatus('sfx-status', appState.sfx.status, appState.sfx.status.includes('Error') ? 'error' : 'success');
-            }
-            if (appState.sfx.taskId && appState.sfx.status === 'processing') {
-                pollForAudio(appState.sfx.taskId);
-            }
-        }
+        // if (appState.sfx.query) {
+        //     document.getElementById('sfx-input').value = appState.sfx.query;
+        //     if (appState.sfx.audioUrl) {
+        //         const audio = document.getElementById('sfx-audio');
+        //         audio.src = appState.sfx.audioUrl;
+        //         audio.classList.remove('hidden');
+        //         updateStatus('sfx-status', appState.sfx.status, appState.sfx.status.includes('Error') ? 'error' : 'success');
+        //     }
+        //     if (appState.sfx.taskId && appState.sfx.status === 'processing') {
+        //         pollForAudio(appState.sfx.taskId);
+        //     }
+        // }
 
         // No restoration for voiceChanger and stt since we're not saving their state
     };
