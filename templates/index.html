@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocal AI</title>
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -55,7 +51,6 @@
         </div>
 
         <div class="sections">
-
             <div class="section text-to-speech-section" data-section="text-to-speech">
                 <h2>Text to Speech</h2>
                 <textarea id="tts-input" placeholder="Enter text here..."></textarea>
@@ -88,8 +83,6 @@
                         Enable mic access, record yourself reading some prompts and generate the sample in different
                         voices
                     </p>
-
-                    <!-- Recording Section -->
                     <div class="recording-controls">
                         <button id="record-voice" class="btn btn-filled">
                             <span class="mic-icon">🎙️</span> START RECORDING
@@ -99,11 +92,7 @@
                         </button>
                     </div>
                     <p id="recording-status"></p>
-
-                    <!-- Audio Playback -->
                     <audio id="recorded-audio" controls class="hidden"></audio>
-
-                    <!-- Select Effect -->
                     <div class="effect-controls hidden" id="effect-controls">
                         <label for="voice-effect">Choose Effect:</label>
                         <select id="voice-effect">
@@ -111,21 +100,13 @@
                             <option value="alien" selected>Alien</option>
                         </select>
                     </div>
-
-                    <!-- Apply Effect Button -->
                     <button id="apply-voice" class="btn btn-filled hidden">APPLY EFFECT</button>
-
-                    <!-- Transformed Audio -->
                     <audio id="voice-changer-audio" controls class="hidden"></audio>
-
-                    <!-- Download Button -->
                     <button id="download-voice" class="btn btn-outline hidden"
                         style="display: block; margin-top: 10px;">
                         ⬇️ DOWNLOAD TRANSFORMED VOICE
                     </button>
                 </div>
-
-
             </div>
 
             <div class="section text-to-sfx-section" data-section="text-to-sfx">
@@ -134,7 +115,6 @@
                 <button id="sfx-submit" type="button">Generate SFX</button>
                 <audio id="sfx-audio" class="hidden" controls></audio>
             </div>
-
 
             <div class="section voice-cloning-section" data-section="voice-cloning">
                 <div class="voice-rows">
@@ -152,7 +132,6 @@
                         </div>
                         <button class="play-btn" data-audio="clone1.mp3">></button>
                     </div>
-
                     <div class="row">
                         <div class="profile original">
                             <img src="https://via.placeholder.com/50" alt="Chris">
@@ -167,7 +146,6 @@
                         </div>
                         <button class="play-btn" data-audio="clone2.mp3">></button>
                     </div>
-
                     <div class="row">
                         <div class="profile original">
                             <img src="https://via.placeholder.com/50" alt="Laura">
@@ -196,7 +174,6 @@
         </div>
     </div>
 
-    <!-- New AI Agents Section -->
     <section class="ai-agents-section">
         <div class="ai-agents-text">
             <h2>DEVELOPERS</h2>
@@ -212,53 +189,50 @@
             <div class="workflow-container">
                 <div class="workflow-path"></div>
                 <div class="arrow">→</div>
-
-                <!-- Connection lines -->
                 <div class="connection-line agent-to-function-h"></div>
                 <div class="connection-line agent-to-function-v"></div>
-
-                <div class="node user">
-                    USER
-                </div>
-
-                <div class="node speech-to-text">
-                    <span class="icon black-icon">Aa</span>
-                    SPEECH TO TEXT
-                </div>
-
-                <div class="node text-to-speech">
-                    <span class="icon black-icon">🔊</span>
-                    .. TEXT TO SPEECH
-                </div>
-
-                <div class="node agent">
-                    AGENT
-                </div>
-
-                <div class="node llm">
-                    <span class="icon">⚙</span>
-                    LLM
-                </div>
-
-                <div class="node function-calling">
-                    FUNCTION CALLING
-                </div>
-
-                <div class="node monitoring">
-                    MONITORING
-                </div>
+                <div class="node user">USER</div>
+                <div class="node speech-to-text"><span class="icon black-icon">Aa</span>SPEECH TO TEXT</div>
+                <div class="node text-to-speech"><span class="icon black-icon">🔊</span>TEXT TO SPEECH</div>
+                <div class="node agent">AGENT</div>
+                <div class="node llm"><span class="icon">⚙</span>LLM</div>
+                <div class="node function-calling">FUNCTION CALLING</div>
+                <div class="node monitoring">MONITORING</div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <section class="developer-section">
+        <h2 class="developer-title">Meet Our Developers</h2>
+        <div class="developer-cards">
+            <div class="developer-card">
+                <img src="/logo/hmd.jpg" alt="Developer 1 Profile" class="developer-img">
+                <h3 class="developer-name">Hammad Nasir</h3>
+                <p class="developer-contact"><span>Phone:</span> 0334-8500674</p>
+                <p class="developer-contact"><span>Email:</span> hammadnasir797@gmail.com</p>
+            </div>
+            <div class="developer-card">
+                <img src="https://via.placeholder.com/80" alt="Developer 2 Profile" class="developer-img">
+                <h3 class="developer-name">Adeel Munir</h3>
+                <p class="developer-contact"><span>Phone:</span> +1 (555) 987-6543</p>
+                <p class="developer-contact"><span>Email:</span> jane.smith@example.com</p>
+            </div>
+            <div class="developer-card">
+                <img src="https://via.placeholder.com/80" alt="Developer 3 Profile" class="developer-img">
+                <h3 class="developer-name">Asif Shah</h3>
+                <p class="developer-contact"><span>Phone:</span> +1 (555) 456-7890</p>
+                <p class="developer-contact"><span>Email:</span> alex.johnson@example.com</p>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
-        <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Contact</a>
+        <div class="footer-links">
+            <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Contact</a>
+        </div>
     </footer>
 
     <script src="script.js"></script>
-
-
 </body>
 
 </html>

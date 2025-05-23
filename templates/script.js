@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         restoreUI();
     };
+    
 
     // Save state to localStorage, excluding voiceChanger and stt
     const saveState = () => {
