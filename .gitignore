@@ -1,4 +1,5 @@
 env
-static
 _pycache_
 .vscode
+2.txt
+script.js
